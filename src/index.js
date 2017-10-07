@@ -6,7 +6,9 @@ import axios from 'axios';
 class App extends Component {
   constructor() {
     super()
-    this.getUsers()
+    this.state = {
+      users: []
+    }
   }
 
   componentDidMount() {
@@ -14,7 +16,7 @@ class App extends Component {
   }
   getUsers() {
     axios.get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)
-    .then((res) => { console.log(res); })
+    .then((res) => { this.setState({ users: res.data.data.users  }); })
     .catch((err) => { console.log(err); })
   }
 
@@ -26,6 +28,11 @@ class App extends Component {
             <br/>
             <h1>All Users </h1>
             <hr/><br/>
+            {
+              this.state.users.map((user) => {
+                return <h4 key={user.id} className="well"><strong>{ user.username }</strong> - <em>{user.created_at}</em></h4>
+              })
+            }
           </div>
         </div>
       </div>
