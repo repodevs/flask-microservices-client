@@ -37,4 +37,28 @@ $ python manage.py seed_db
 $ python manage.py runserver -p 5555
 ```
 
+## Other Command
+
+To Build Docker image React App:
+```bash
+$ docker build -t "test" ./ --build-arg NODE_ENV=development --build-arg REACT_APP_USERS_SERVICE_URL=http://FLASK_SERVER_URL
+```
+To run the `test` image:
+```bash
+$ docker run -d -p 9000:9000 test
+```
+To view container's environment:
+```bash
+$ docker exec CONTAINER_ID bash -c 'env'
+```
+To stop and remove container:
+```bash
+$ docker stop CONTAINER_ID
+$ docker rm CONTAINER_ID
+```
+To remove the image:
+```bash
+$ docker rmi test
+```
+
 
