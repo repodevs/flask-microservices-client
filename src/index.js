@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import UsersList from './components/UsersList';
+import AddUser from './components/AddUser';
 
 
 class App extends Component {
@@ -21,6 +22,13 @@ class App extends Component {
     .catch((err) => { console.log(err); })
   }
 
+  addUser(event) {
+    event.preventDefault();
+    console.log('sanity check!');
+    //console.log(this);
+  }
+
+
   render() {
     return (
       <div className="container">
@@ -29,6 +37,8 @@ class App extends Component {
             <br/>
             <h1>All Users </h1>
             <hr/><br/>
+            <AddUser addUser={this.addUser.bind(this)}/>
+            <br/>
             <UsersList users={this.state.users} />
           </div>
         </div>
