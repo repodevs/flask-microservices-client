@@ -9,7 +9,9 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      users: []
+      users: [],
+      username: '',
+      email: ''
     }
   }
 
@@ -24,10 +26,14 @@ class App extends Component {
 
   addUser(event) {
     event.preventDefault();
-    console.log('sanity check!');
-    //console.log(this);
+    console.log(this);
   }
 
+  handleChange(event) {
+    const obj = {};
+    obj[event.target.name] = event.target.value;
+    this.setState(obj);
+  }
 
   render() {
     return (
@@ -37,7 +43,12 @@ class App extends Component {
             <br/>
             <h1>All Users </h1>
             <hr/><br/>
-            <AddUser addUser={this.addUser.bind(this)}/>
+            <AddUser
+              username={this.state.username}
+              email={this.state.email}
+              handleChange={this.handleChange.bind(this)}
+              addUser={this.addUser.bind(this)}
+            />
             <br/>
             <UsersList users={this.state.users} />
           </div>
