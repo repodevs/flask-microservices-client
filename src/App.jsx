@@ -21,7 +21,8 @@ class App extends Component {
         username: '',
         email: '',
         password: ''
-      }
+      },
+      isAuthenticated: false
     }
   }
 
@@ -74,7 +75,17 @@ class App extends Component {
     const url = `${process.env.REACT_APP_USERS_SERVICE_URL}/auth/${formType}`
     axios.post(url, data)
     .then((res) => {
-      console.log(res.data);
+      // clear register from
+      this.setState({
+        formData: {username: '', email: '', password: ''},
+        username: '',
+        email: '',
+        isAuthenticated: true
+      });
+      // save auth token to localStorage
+      window.localStorage.setItem('authToken', res.data.auth_token);
+      // get list of users
+      this.getUsers();
     })
     .catch((err) => { console.log(err); })
   }
@@ -120,6 +131,7 @@ class App extends Component {
                       formData={this.state.formData}
                       handleFormChange={this.handleFormChange.bind(this)}
                       handleUserFormSubmit={this.handleUserFormSubmit.bind(this)}
+                      isAuthenticated={this.state.isAuthenticated}
                     />
                   )} />
 
@@ -129,6 +141,7 @@ class App extends Component {
                       formData={this.state.formData}
                       handleFormChange={this.handleFormChange.bind(this)}
                       handleUserFormSubmit={this.handleUserFormSubmit.bind(this)}
+                      isAuthenticated={this.state.isAuthenticated}
                     />
                   )} />
 
