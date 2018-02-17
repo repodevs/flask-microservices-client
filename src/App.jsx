@@ -6,6 +6,7 @@ import UsersList from './components/UsersList';
 import AddUser from './components/AddUser';
 import About from './components/About';
 import NavBar from './components/NavBar';
+import Form from './components/Form';
 
 
 class App extends Component {
@@ -15,7 +16,12 @@ class App extends Component {
       users: [],
       username: '',
       email: '',
-      title: 'repodevs - microservices'
+      title: 'repodevs - microservices',
+      formData: {
+        username: '',
+        email: '',
+        password: ''
+      }
     }
   }
 
@@ -76,6 +82,21 @@ class App extends Component {
                   )} />
 
                   <Route exact path='/about' component={About} />
+
+                  <Route exact path='/register' render={() => (
+                    <Form
+                      formType={'Register'}
+                      formData={this.state.formData}
+                    />
+                  )} />
+
+                  <Route exact path='/login' render={() => (
+                    <Form
+                      formType={'Login'}
+                      formData={this.state.formData}
+                    />
+                  )} />
+
                 </Switch>
               </div>
             </div>
