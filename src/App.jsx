@@ -8,6 +8,7 @@ import About from './components/About';
 import NavBar from './components/NavBar';
 import Form from './components/Form';
 import Logout from './components/Logout';
+import UserStatus from './components/UserStatus';
 
 
 class App extends Component {
@@ -157,6 +158,8 @@ class App extends Component {
                       isAuthenticated={this.state.isAuthenticated}
                     />
                   )} />
+
+                  <Route exact path='/status' component={UserStatus} />
 
                 </Switch>
               </div>
