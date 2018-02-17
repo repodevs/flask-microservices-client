@@ -108,6 +108,7 @@ class App extends Component {
       <div>
         <NavBar
           title={this.state.title}
+          isAuthenticated={this.state.isAuthenticated}
           />
           <div className="container">
             <div className="row">
@@ -159,7 +160,11 @@ class App extends Component {
                     />
                   )} />
 
-                  <Route exact path='/status' component={UserStatus} />
+                  <Route exact path='/status' render={() => (
+                    <UserStatus
+                      isAuthenticated={this.state.isAuthenticated}
+                    />
+                  )} />
 
                 </Switch>
               </div>
