@@ -54,6 +54,16 @@ class App extends Component {
     this.setState(obj);
   }
 
+  handleUserFormSubmit(event) {
+    event.preventDefault();
+  }
+
+  handleFormChange(event) {
+    const obj = this.state.formData;
+    obj[event.target.name] = event.target.value;
+    this.setState(obj);
+  }
+
   render() {
     return (
       <div>
@@ -87,6 +97,7 @@ class App extends Component {
                     <Form
                       formType={'Register'}
                       formData={this.state.formData}
+                      handleFormChange={this.handleFormChange.bind(this)}
                     />
                   )} />
 
@@ -94,6 +105,7 @@ class App extends Component {
                     <Form
                       formType={'Login'}
                       formData={this.state.formData}
+                      handleFormChange={this.handleFormChange.bind(this)}
                     />
                   )} />
 

@@ -5,7 +5,7 @@ const Form = (props) => {
 		<div>
 			<h1>{props.formType}</h1>
 			<hr/><br/>
-			<form onSubmut={(event) => props.handleUserFormSubmit(event)}>
+			<form onSubmit={(event) => props.handleUserFormSubmit(event)}>
 				{props.formType === 'Register' &&
 					<div className="form-group">
 						<input
