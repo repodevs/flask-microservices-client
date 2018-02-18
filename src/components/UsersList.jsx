@@ -1,15 +1,36 @@
 import React from 'react';
+import { Table } from 'react-bootstrap';
+
 
 const UsersList = (props) => {
   return (
     <div>
       <h1>All Users</h1>
       <hr/><br/>
-      {
-        props.users.map((user) => {
-          return <h4 key={user.id} className="well"><strong>{user.username}</strong> - <em>{user.created_at}</em></h4>
-        })
-      }
+      <Table striped bordered condensed hover>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            props.users.map((user) => {
+              return (
+                <tr key={user.id}>
+                  <td>{user.id}</td>
+                  <td>{user.email}</td>
+                  <td>{user.username}</td>
+                  <td>{user.created_at}</td>
+                </tr>
+              )
+            })
+          }
+        </tbody>
+      </Table>
     </div>
   )
 }
